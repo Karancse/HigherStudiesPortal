@@ -45,12 +45,12 @@ app.post("/logIn", (req, res) => {
 
     const { email, password } = req.query;
 
-	console.log("Log In Request: "+email+" "+password)
+    console.log("Log In Request: "+email+" "+password)
 
     pool.getConnection((err, connection) => {
-        if(err) throw err
-        console.log('connected as id ' + connection.threadId)
-        connection.query('SELECT * from credentials WHERE username = '+username+' , password = '+password, (err, rows) => {
+	    if(err) throw err
+	    console.log('connected as id ' + connection.threadId)
+	    connection.query('SELECT * from credentials WHERE username = '+username+' , password = '+password, (err, rows) => {
             connection.release() // return the connection to pool
 
             if (!err) {
